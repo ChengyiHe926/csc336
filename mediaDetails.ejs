@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Moive Database</title>
+    
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+
+<body>
+    <div class="header">
+        <h3>Movie DB</h3>
+    </div>
+    <header>
+        <%- include('./partials/header'); %>
+            <link rel="stylesheet" href="/static/mediaDetails.css">
+    </header>
+
+    <main class="container">
+        <div id="details">
+            <div class="details-h-l">
+                <img src="<%=item.poster_path%>" alt="details">
+            </div>
+            <div class="details-h-r">
+                <h2>
+                    <%=item.title%> <a class="link" target="_blank"
+                            href="https://www.themoviedb.org/movie/<%=item.id%>">ⓘ</a>
+                </h2>
+                <p>
+                    <%=item.date%> | <%=item.genres_str%> | <%=item.runtime%> mins
+                </p>
+                <p></p>
+                <div><span style="color: #ff5722;">★ <%=item.vote_average%>/5</span>
+                    <!-- <%=item.vote_count%> votes -->
+                </div>
+                <p></p>
+
+                <p><b>Spoken Languages <%=item.spoken_languages%></b></p>
+                <p>
+                    <Button class="btn" style="background-color: rgb(62, 121, 248);" id="add">Add to favorate list</Button>
+                    <Button class="btn" id="remove">Remove from favorate list</Button>
+                </p>
+                <p id="msg"></p>
+            </div>
+            <h2>Overview</h2>
+            <p>
+                <%=item.overview%>
+            </p>
+            <h2>Casts</h2>
+            <div class="casts">
+                <% casts.forEach( cast=> { %>
+
+                    <div class="cast">
+                        <a data-id="<%=cast.id%>" onclick="showCastDetail(event)">
+                            <img data-id="<%=cast.id%>" style="width:100%" src="<%=cast.profile_path%>"
+                                alt="<%=cast.name%>" title="<%=cast.name%>">
+                        </a>
+                        <p><b>
+                                <%=cast.name%>
+                            </b><br>As<br><span class="oneline">
+                                <%=cast.character%>
+                            </span></p>
+
+
+                    </div>
+                    <% }) %>
+            </div>
+            <h2>Reviews (<%= reviews.length%>)
+            </h2>
+            <div class="reviews">
+                <% if(reviews.length==0){%>
+                    <h4>No reviews </h4>
+                <% } %>
+                <% reviews.forEach( review=> { %>
+                    <div class="review">
+                        <span><b>
+                                <%=review.author%>
+                            </b> on <%=review.created_at%></span>
+                        <p>
+                            <span style="color: #ff5722;">★ <%=review.rating%>/10</span>
+                            <br>
+                            <%=review.content%>
+                        </p>
+                    </div>
+                    <hr />
+                    <% }) %>
+
+            </div>
+        </div>
+        <div class="category">
+            <h2>Similar <%=type%>
+            </h2>
+            <div class="cards">
+                <% if(similar.length==0){%>
+                    <h4>No Similar <%=type%></h4>
+                <% } %>
+                <% similar.forEach( item=> { %>
+                    <div class="card">
+                        <a href="/details/<%=type%>/<%= item.id%>">
+                            <img style="width:100%" src="<%= item.poster_path%>" alt="<%= item.title%>"
+                                title="<%= item.title%>">
+                        </a>
+                        <div style="text-align: center; color: white;">
+                            <%= item.title%>
+                        </div>
+                    </div>
+                    <% }) %>
+
+            </div>
+        </div>
+        <div class="category">
+            <h2>Recommendations <%=type%>
+            </h2>
+            <div class="cards">
+                <% if(recommendations.length==0){%>
+                    <h4>No recommendations </h4>
+                <% } %>
+                <% recommendations.forEach( item=> { %>
+                    <div class="card">
+                        <a href="/details/<%=type%>/<%= item.id%>">
+                            <img style="width:100%" src="<%= item.poster_path%>" alt="<%= item.title%>"
+                                title="<%= item.title%>">
+                        </a>
+                        <div style="text-align: center; color: white;">
+                            <%= item.title%>
+                        </div>
+                    </div>
+                    <% }) %>
+            </div>
+        </div>
+    </main>
+    <div class="overlay hide"> &nbsp;</div>
+    <div class="modal off">
+        <div id="modal">
+
+        </div>
+        <button id="close" class="btn close">
+            X</button>
+
+    </div>
+    <script src="/static/js/mediaDetails.js">
+    </script>
+</body>
+
+</html>

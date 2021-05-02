@@ -1,0 +1,17 @@
+
+
+.overview {
+    display: -webkit-box;
+    /* max-width: 200px; */
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.oneline {
+    display: -webkit-box;
+    /* max-width: 200px; */
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}

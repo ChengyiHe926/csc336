@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Moive Database</title>
+    
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+
+<body >
+    <div class="header">
+        <h3>Movie DB</h3>
+    </div>
+    <header>
+        <%- include('./partials/header'); %>
+            <link rel="stylesheet" href="/static/allMedia.css">
+    </header>
+
+    <main class="container">
+
+        <div id="results">
+            <h1>
+                <%= title%>
+            </h1>
+            <% items.forEach( item=> { %>
+                <div class="card">
+                    <img width="200" src="<%= item.poster_path%>" alt="">
+                    <div class="card-body">
+                        <h3>
+                            <%= item.title%>
+                        </h3>
+                        <p style="font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;">
+                        </p>
+                        <div>
+                            <%= item.year%> | <%= item.genres_str%>
+                        </div>
+                        <div><span style="color: #ff5722;">★ <%= item.vote_average%>/5</span>
+                            <%= item.vote_count%> votes
+                        </div>
+                        <p></p>
+                        <p class="overview">
+                            <%= item.overview%>
+                        </p>
+                        <a href="/details/<%=type%>/<%= item.id%>">Read More</a>
+                    </div>
+                </div>
+                <% }) %>
+        </div>
+    </main>
+
+</body>
+
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Moive Database</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+
+<body>
+    <div class="header">
+        <h3>Movie DB</h3>
+    </div>
+    <header>
+        <%- include('./partials/header'); %>
+    </header>
+
+    <main class="container">
+        <div class="form">
+            <h3 style="margin-top: 1%;">Search</h3>
+            <div class="block">
+                <label for="keyword" class="required">KeyWord</label>
+                <input id="keyword" name="keyword" type="search">
+            </div>
+            <div class="block">
+                <label for="category" class="required">Category</label>
+                <select name="category" id="category">
+                    <option value="">Select Type</option>
+                    <option value="movie">Movies</option>
+                    <option value="tv">TV shows</option>
+                    <option value="multi">Movies and TV Shows</option>
+                </select>
+            </div>
+            <div class="block" style="text-align: center;">
+                <button onclick="search()">Search</button>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <button onclick="clearForm()">Clear</button>
+            </div>
+        </div>
+        <div id="results">
+
+        </div>
+
+    </main>
+
+    <script src="/static/js/search.js"></script>
+</body>
+
+</html>
